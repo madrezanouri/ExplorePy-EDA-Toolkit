@@ -241,12 +241,15 @@ data_summary(df_csv)
 # Example Table: Output of data_summary()
 
 Dataset Shape
-Metric |	Value
----------------
-Rows	| 5
---------------
-Columns |	4
---------------
+ 	Value
+  5
+Columns 	4
+
+Metric  | Value
+------- | -------
+Row     | 5
+Columns | 4
+
 
 
 Dataset Info
