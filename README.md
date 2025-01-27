@@ -7,7 +7,7 @@ This end-to-end EDA toolkit provides a comprehensive set of tools and reusable c
 
 
 # Introduction
-ExplorePy is a comprehensive Python framework designed for Exploratory Data Analysis (EDA), which is the essential first step in any data science or machine learning project. The framework provides a step-by-step, modular, and reusable toolkit for importing, cleaning, analyzing, and visualizing datasets.
+**ExplorePy** is a comprehensive Python framework designed for Exploratory Data Analysis (EDA), which is the essential first step in any data science or machine learning project. The framework provides a step-by-step, modular, and reusable toolkit for importing, cleaning, analyzing, and visualizing datasets.
 
 
 # The goal of ExplorePy is to:
@@ -38,14 +38,14 @@ ExplorePy is a comprehensive Python framework designed for Exploratory Data Anal
 # Step 1: Importing Data
 The first step in the pipeline is importing the dataset. ExplorePy supports importing data from various sources such as:
 
-Local files (CSV, Excel, JSON, etc.)
+**Local files (CSV, Excel, JSON, etc.)**
 
-SQL databases
+**SQL databases**
 
-APIs
+**APIs**
 
-Cloud services like AWS S3
+**Cloud services like AWS S3**
 
-The flexible importing function handles datasets of any size and ensures a smooth start to your EDA process.
+**The flexible importing function handles datasets of any size and ensures a smooth start to your EDA process.**
 
 
