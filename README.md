@@ -12,14 +12,22 @@ ExplorePy is a comprehensive Python framework designed for Exploratory Data Anal
 # The goal of ExplorePy is to:
 
 . Simplify the EDA process for analysts and data scientists.
+
 . Save time by automating routine EDA tasks.
+
 . Provide advanced techniques and insights to make better data-driven decisions.
+
 . Deliver professional visualizations and detailed summary reports.
+
 
 # Key Features:
 
 . Flexible data importing (from files, APIs, databases, etc.).
+
 . Automated data cleaning and preprocessing.
+
 . Comprehensive analysis methods: univariate, bivariate, and multivariate.
+
 . Stunning visualizations using both static and interactive tools.
+
 . Automated report generation for quick sharing of insights.
