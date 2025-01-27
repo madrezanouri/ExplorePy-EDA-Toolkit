@@ -240,10 +240,7 @@ data_summary(df_csv)
 
 # Example Table: Output of data_summary()
 
-Dataset Shape
- 	Value
-  5
-Columns 	4
+**Dataset Shape**
 
 Metric  | Value
 ------- | -------
@@ -252,7 +249,17 @@ Columns | 4
 
 
 
-Dataset Info
+**Dataset Info:**
+
+Column Name  | Non-Null Count | Data Type
+------------ | -------------  | ---------
+Name         | 5              | object
+Age          | 5              | int64
+Department   | 5              | object
+Salary       | 5              | int64
+
+
+
 Column Name	Non-Null Count	Data Type
 Name	5	object
 Age	5	int64
