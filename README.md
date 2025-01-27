@@ -35,17 +35,35 @@ This end-to-end EDA toolkit provides a comprehensive set of tools and reusable c
 . Automated report generation for quick sharing of insights.
 
 
-# Step 1: Importing Data
-The first step in the pipeline is importing the dataset. ExplorePy supports importing data from various sources such as:
+# Overview of Step 1
 
-**Local files (CSV, Excel, JSON, etc.)**
+The data importing module supports:
 
-**SQL databases**
+**1. Local File Importing:**
+   
+Supports multiple formats: CSV, Excel, JSON, Parquet, etc.
 
-**APIs**
+**2. Database Integration:**
+   
+Import data directly from SQL databases using SQLite or SQLAlchemy.
 
-**Cloud services like AWS S3**
+**3. API Data Importing:**
+   
+Fetch JSON data from APIs and convert it to a DataFrame.
 
-**The flexible importing function handles datasets of any size and ensures a smooth start to your EDA process.**
+**4. Cloud Data Handling:**
+   
+Load data from AWS S3 buckets or other cloud services.
+
+**5. Chunk Processing:**
+   
+Efficiently handle large datasets using chunk-based loading to avoid memory issues.
+
+In this example, we’ll demonstrate how to:
+
+Import two files: one **Excel** file and one **CSV** file that have been uploaded to your GitHub repository.
+
+Inspect the data after importing.
+
 
 
