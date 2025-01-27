@@ -239,10 +239,16 @@ data_summary(df_csv)
 ```
 
 # Example Table: Output of data_summary()
+
 Dataset Shape
-Metric	Value
-Rows	5
-Columns	4
+Metric |	Value
+---------------
+Rows	| 5
+--------------
+Columns |	4
+--------------
+
+
 Dataset Info
 Column Name	Non-Null Count	Data Type
 Name	5	object
@@ -262,4 +268,3 @@ Min	NaN	25.000000	NaN	55000.000000
 50%	NaN	35.000000	NaN	70000.000000
 75%	NaN	40.000000	NaN	75000.000000
 Max	NaN	45.000000	NaN	80000.000000
-
