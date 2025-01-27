@@ -260,12 +260,16 @@ Salary       | 5              | int64
 
 
 
-Column Name	Non-Null Count	Data Type
-Name	5	object
-Age	5	int64
-Department	5	object
-Salary	5	int64
-Summary Statistics
+**Summary Statistics**
+
+Metric     | Name | Age       |  Department | Salary
+-------    | ---  |---------- | ----------- | ------
+Count      | 5    | 5.000000  |    5        | 5.000000  
+Unique     |      | 5         | int64       |
+Top        | 5    |           | object      |
+Frequency  |      | 5         | int64       |
+
+
 Metric	Name	Age	Department	Salary
 Count	5	5.000000	5	5.000000
 Unique	5	NaN	3	NaN
