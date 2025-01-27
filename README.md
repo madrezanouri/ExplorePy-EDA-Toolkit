@@ -72,3 +72,28 @@ Inspect the data after importing.
 
 
 
+import pandas as pd
+
+def import_local_file(file_path, file_type, **kwargs):
+    """
+    Import data from local files.
+    
+    Args:
+        file_path (str): Path to the file.
+        file_type (str): Type of the file ('csv', 'excel', 'json', 'parquet', etc.).
+        **kwargs: Additional arguments for specific file readers.
+        
+    Returns:
+        pd.DataFrame: Loaded dataset.
+    """
+    if file_type == 'csv':
+        df = pd.read_csv(file_path, **kwargs)
+    elif file_type == 'excel':
+        df = pd.read_excel(file_path, **kwargs)
+    elif file_type == 'json':
+        df = pd.read_json(file_path, **kwargs)
+    elif file_type == 'parquet':
+        df = pd.read_parquet(file_path, **kwargs)
+    else:
+        raise ValueError(f"Unsupported file type: {file_type}")
+    return df
