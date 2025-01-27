@@ -213,7 +213,30 @@ df_large = import_large_csv('large_file.csv', chunk_size=5000)
 
 
 
-Inspect the data after importing.
+**6. Dataset Summary Function:**
 
+This function displays three key aspects of the dataset:
+
+1. Shape: The number of rows and columns in the dataset.
+2. Info: The data types of each column, the number of non-null values, and memory usage.
+3. Summary Statistics: Descriptive statistics for both numerical and categorical columns (e.g., mean, median, unique values).
+
+   ```
+   def data_summary(df):
+    """
+    Display basic information about the dataset.
+    
+    Args:
+        df (pd.DataFrame): Dataset.
+    """
+    print("Shape of dataset:", df.shape)
+    print("\nInfo:")
+    print(df.info())
+    print("\nSummary statistics:")
+    print(df.describe(include='all'))
+```
+```
+data_summary(df_csv)
+```
 
 
