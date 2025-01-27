@@ -1,4 +1,4 @@
-# ExplorePy: EDA Toolkit
+# ExplorePy: An EDA Toolkit
 
 <img width="640" alt="1696735515832" src="https://github.com/user-attachments/assets/9e6c335e-626a-48ef-83de-0346b9cccf7c" />
 
