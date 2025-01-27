@@ -238,4 +238,28 @@ This function displays three key aspects of the dataset:
 data_summary(df_csv)
 ```
 
+# Example Table: Output of data_summary()
+Dataset Shape
+Metric	Value
+Rows	5
+Columns	4
+Dataset Info
+Column Name	Non-Null Count	Data Type
+Name	5	object
+Age	5	int64
+Department	5	object
+Salary	5	int64
+Summary Statistics
+Metric	Name	Age	Department	Salary
+Count	5	5.000000	5	5.000000
+Unique	5	NaN	3	NaN
+Top	Alice	NaN	Engineering	NaN
+Frequency	1	NaN	2	NaN
+Mean	NaN	35.000000	NaN	68000.000000
+Std Dev	NaN	7.905694	NaN	11135.528725
+Min	NaN	25.000000	NaN	55000.000000
+25%	NaN	30.000000	NaN	60000.000000
+50%	NaN	35.000000	NaN	70000.000000
+75%	NaN	40.000000	NaN	75000.000000
+Max	NaN	45.000000	NaN	80000.000000
 
