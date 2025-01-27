@@ -42,22 +42,27 @@ The data importing module supports:
 **1. Local File Importing:**
    
 Supports multiple formats: CSV, Excel, JSON, Parquet, etc.
+ 
 
 **2. Database Integration:**
    
 Import data directly from SQL databases using SQLite or SQLAlchemy.
+ 
 
 **3. API Data Importing:**
    
 Fetch JSON data from APIs and convert it to a DataFrame.
+ 
 
 **4. Cloud Data Handling:**
    
 Load data from AWS S3 buckets or other cloud services.
+ 
 
 **5. Chunk Processing:**
    
 Efficiently handle large datasets using chunk-based loading to avoid memory issues.
+ 
 
 In this example, we’ll demonstrate how to:
 
