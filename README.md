@@ -86,26 +86,132 @@ df_json = import_local_file('data.json', 'json')
 **2. Database Integration:**
    
 Import data directly from SQL databases using SQLite or SQLAlchemy.
+
+```
+import pandas as pd
+import sqlite3
+
+def import_from_sql(query, db_path):
+    """
+    Import data from an SQLite database.
+    
+    Args:
+        query (str): SQL query to execute.
+        db_path (str): Path to the SQLite database.
+        
+    Returns:
+        pd.DataFrame: Resulting dataset.
+    """
+    conn = sqlite3.connect(db_path)
+    df = pd.read_sql(query, conn)
+    conn.close()
+    return df
+```
+```
+# SQL Query
+query = "SELECT * FROM employees WHERE salary > 50000"
+df_sql = import_from_sql(query, 'database.db')
+```
  
 
 **3. API Data Importing:**
    
 Fetch JSON data from APIs and convert it to a DataFrame.
+
+```
+import requests
+import pandas as pd
+
+def import_from_api(url, headers=None, params=None):
+    """
+    Import data from an API endpoint.
+    
+    Args:
+        url (str): API endpoint URL.
+        headers (dict): Headers for the API request.
+        params (dict): Query parameters for the API request.
+        
+    Returns:
+        pd.DataFrame: Data from the API as a DataFrame.
+    """
+    response = requests.get(url, headers=headers, params=params)
+    if response.status_code == 200:
+        data = response.json()  # Assuming the API returns JSON
+        return pd.DataFrame(data)
+    else:
+        raise Exception(f"Failed to fetch data. Status code: {response.status_code}")
+```
+```
+# Example API
+api_url = "https://jsonplaceholder.typicode.com/posts"
+df_api = import_from_api(api_url)
+```
  
 
 **4. Cloud Data Handling:**
    
 Load data from AWS S3 buckets or other cloud services.
+
+```
+import boto3
+import pandas as pd
+from io import StringIO
+
+def import_from_s3(bucket_name, file_key, aws_access_key, aws_secret_key):
+    """
+    Import data from an AWS S3 bucket.
+    
+    Args:
+        bucket_name (str): Name of the S3 bucket.
+        file_key (str): Key (path) to the file in the bucket.
+        aws_access_key (str): AWS access key.
+        aws_secret_key (str): AWS secret key.
+        
+    Returns:
+        pd.DataFrame: Loaded dataset.
+    """
+    s3 = boto3.client('s3', aws_access_key_id=aws_access_key, aws_secret_access_key=aws_secret_key)
+    obj = s3.get_object(Bucket=bucket_name, Key=file_key)
+    data = obj['Body'].read().decode('utf-8')
+    return pd.read_csv(StringIO(data))
+```
+```
+df_s3 = import_from_s3(
+    bucket_name='my-bucket',
+    file_key='path/to/data.csv',
+    aws_access_key='your-access-key',
+    aws_secret_key='your-secret-key'
+)
+```
  
 
 **5. Chunk Processing:**
    
 Efficiently handle large datasets using chunk-based loading to avoid memory issues.
+
+```
+def import_large_csv(file_path, chunk_size=10000):
+    """
+    Import large CSV files in chunks.
+    
+    Args:
+        file_path (str): Path to the CSV file.
+        chunk_size (int): Number of rows per chunk.
+        
+    Returns:
+        pd.DataFrame: Combined dataset after reading in chunks.
+    """
+    chunks = []
+    for chunk in pd.read_csv(file_path, chunksize=chunk_size):
+        chunks.append(chunk)
+    return pd.concat(chunks, axis=0)
+```
+```
+df_large = import_large_csv('large_file.csv', chunk_size=5000)
+```
  
 
-In this example, we’ll demonstrate how to:
 
-Import two files: one **Excel** file and one **CSV** file that have been uploaded to your GitHub repository.
 
 Inspect the data after importing.
 
