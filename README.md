@@ -235,8 +235,7 @@ This function displays three key aspects of the dataset:
     print("\nSummary statistics:")
     print(df.describe(include='all'))
 ```
-```
-data_summary(df_csv)
+```data_summary(df_csv)
 ```
 
 
