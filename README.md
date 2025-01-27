@@ -72,7 +72,7 @@ Inspect the data after importing.
 
 
 
-'''
+```
 import pandas as pd
 
 def import_local_file(file_path, file_type, **kwargs):
@@ -98,4 +98,4 @@ def import_local_file(file_path, file_type, **kwargs):
     else:
         raise ValueError(f"Unsupported file type: {file_type}")
     return df
-    '''
+  ```
