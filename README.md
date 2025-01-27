@@ -69,7 +69,8 @@ def import_local_file(file_path, file_type, **kwargs):
     else:
         raise ValueError(f"Unsupported file type: {file_type}")
     return df
-
+```
+```
 # CSV
 df_csv = import_local_file('data.csv', 'csv')
 
