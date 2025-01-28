@@ -310,7 +310,7 @@ In ExplorePy, the cleaning and preprocessing module is designed to streamline th
 **Overview of Step 2**
 The data cleaning and preprocessing module includes:
 
-**1.Data Quality Assessment:**
+**1. Data Quality Assessment:**
 Generate a detailed data quality report to evaluate issues like missing values, null percentages, unique values, and duplicate rows.
 
 ```
@@ -532,3 +532,86 @@ def encode_categorical(df, columns, encoding_type="one_hot"):
 ```
 df_encoded = encode_categorical(df, columns=['gender', 'department'], encoding_type='one_hot')
 ```
+
+# Step 3: Analyzing the Data
+
+With the dataset cleaned and preprocessed in Step 2, the next step is to dive into data analysis. This step involves exploring the data to uncover patterns, trends, and relationships between variables. By performing univariate, bivariate, and multivariate analyses, we can gain valuable insights that set the stage for modeling and decision-making.
+
+**The data analysis module in ExplorePy includes:**
+
+**Univariate Analysis:** 
+Focuses on summarizing and visualizing individual variables to understand their distributions.
+
+```
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+def univariate_analysis(df, column):
+    """
+    Perform univariate analysis on a given column.
+    
+    Args:
+        df (pd.DataFrame): Dataset.
+        column (str): Column to analyze.
+        
+    Returns:
+        None
+    """
+    print(f"Summary Statistics for {column}:")
+    print(df[column].describe(include='all'))
+    print("\n")
+
+    if df[column].dtype in ['int64', 'float64']:  # Numerical data
+        plt.figure(figsize=(14, 6))
+        
+        plt.subplot(1, 2, 1)
+        sns.histplot(df[column], kde=True, color='blue', bins=30)
+        plt.title(f"Histogram of {column}")
+        
+        plt.subplot(1, 2, 2)
+        sns.boxplot(x=df[column], color='blue')
+        plt.title(f"Boxplot of {column}")
+        
+        plt.show()
+    
+    elif df[column].dtype == 'object':  # Categorical data
+        plt.figure(figsize=(8, 6))
+        sns.countplot(y=df[column], palette='viridis', order=df[column].value_counts().index)
+        plt.title(f"Frequency Count of {column}")
+        plt.show()
+```
+```
+# Numerical column
+univariate_analysis(df, 'age')
+
+# Categorical column
+univariate_analysis(df, 'gender')
+```
+
+# Univariate Analysis Output Example:
+
+![Histogram Boxplot](https://github.com/user-attachments/assets/8d3c9c48-834e-420d-8480-4d2b06ee8869)
+
+**Fig3: Histogram and Boxplot**
+
+
+**Bivariate Analysis:** 
+Examines relationships between two variables, such as correlations and comparisons.
+
+![scatter plot](https://github.com/user-attachments/assets/856e2566-876f-45e0-a505-ac84deb66962)
+
+**Fig4: Scatter Plot**
+
+
+**Multivariate Analysis:** 
+Explores relationships across multiple variables to understand higher-dimensional interactions.
+
+![Correlation Heatmap](https://github.com/user-attachments/assets/3956d845-448f-4170-afdb-ec35c72715fd)
+
+**Fig5: Correlation Heatmap**
+
+![Pair Plot](https://github.com/user-attachments/assets/aeeda9da-0021-4e21-923d-f48d3e31e7ce)
+
+![correlation_matrix](https://github.com/user-attachments/assets/b2e83ca1-e100-40a2-9e4a-9fee862f5dc1)
+
+**Fig6: Pair Plot & Correlation Matrix**
