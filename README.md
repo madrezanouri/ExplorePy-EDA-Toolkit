@@ -612,6 +612,7 @@ Explores relationships across multiple variables to understand higher-dimensiona
 
 ![Pair Plot](https://github.com/user-attachments/assets/aeeda9da-0021-4e21-923d-f48d3e31e7ce)
 
-![correlation_matrix](https://github.com/user-attachments/assets/b2e83ca1-e100-40a2-9e4a-9fee862f5dc1)
+![pairwise_scatter_plots](https://github.com/user-attachments/assets/3d4809d6-1b66-448b-9fdd-3d79388e1aae)
 
-**Fig6: Pair Plot & Correlation Matrix**
+
+**Fig6: Pair Plots**
