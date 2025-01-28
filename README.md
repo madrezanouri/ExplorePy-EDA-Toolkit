@@ -406,12 +406,12 @@ df_cleaned_knn = handle_missing_values(df, strategy="knn", knn_neighbors=3)
 
 ![no missing values](https://github.com/user-attachments/assets/c15201dd-95f2-4a3b-959c-c479e859fa03)
 
-                                     Data sample with no missing valuse
+Data sample with no missing valuse
 
 
 ![missing valus](https://github.com/user-attachments/assets/80e935fe-788e-443b-8195-44196196d23f)
 
-                                       Data sample with missing values
+Data sample with missing values
 
 
 3. Removing Duplicates: Identifying and removing duplicate rows to ensure data integrity.
