@@ -300,3 +300,111 @@ def optimize_memory(df):
 df_optimized = optimize_memory(df_csv)
 ```
 
+
+# Step 2: Cleaning and Preprocessing the Data
+
+After importing the dataset in Step 1, the next critical step in Exploratory Data Analysis (EDA) is data cleaning and preprocessing. This step ensures that the dataset is consistent, reliable, and ready for analysis by addressing common issues such as missing values, duplicates, outliers, and data type mismatches.
+
+In ExplorePy, the cleaning and preprocessing module is designed to streamline this process by providing reusable, efficient, and flexible functions that can handle datasets of varying complexity.
+
+**Overview of Step 2**
+The data cleaning and preprocessing module includes:
+
+**1.Data Quality Assessment:**
+Generate a detailed data quality report to evaluate issues like missing values, null percentages, unique values, and duplicate rows.
+
+```
+def data_quality_report(df):
+    """
+    Generate a summary report of data quality issues.
+    
+    Args:
+        df (pd.DataFrame): Dataset.
+        
+    Returns:
+        pd.DataFrame: Summary of data quality issues.
+    """
+    report = pd.DataFrame({
+        'Column': df.columns,
+        'DataType': df.dtypes,
+        'Non-Null Count': df.notnull().sum(),
+        'Null Count': df.isnull().sum(),
+        'Null Percentage': (df.isnull().sum() / len(df)) * 100,
+        'Unique Values': df.nunique(),
+        'Duplicate Rows': df.duplicated().sum()
+    }).reset_index(drop=True)
+    return report
+```
+```
+report = data_quality_report(df)
+print(report)
+```
+
+**2. Handling Missing Values:** 
+Identifying and addressing missing values using multiple strategies like imputation, deletion, or advanced methods.
+
+```
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.impute import KNNImputer
+
+def visualize_missing_data(df):
+    """
+    Visualize missing data using a heatmap.
+    
+    Args:
+        df (pd.DataFrame): Dataset.
+    """
+    plt.figure(figsize=(12, 6))
+    sns.heatmap(df.isnull(), cbar=False, cmap='viridis')
+    plt.title("Missing Data Heatmap")
+    plt.show()
+
+def handle_missing_values(df, strategy="mean", columns=None, knn_neighbors=5):
+    """
+    Handle missing values in the dataset.
+    
+    Args:
+        df (pd.DataFrame): Dataset.
+        strategy (str): Strategy for handling missing values ('mean', 'median', 'mode', 'drop', 'knn').
+        columns (list): Specific columns to apply the strategy to. If None, applies to all columns.
+        knn_neighbors (int): Number of neighbors for KNN imputation.
+        
+    Returns:
+        pd.DataFrame: Dataset with missing values handled.
+    """
+    columns = columns if columns else df.columns
+    
+    if strategy == "drop":
+        return df.dropna(subset=columns)
+    
+    for col in columns:
+        if strategy == "mean":
+            df[col].fillna(df[col].mean(), inplace=True)
+        elif strategy == "median":
+            df[col].fillna(df[col].median(), inplace=True)
+        elif strategy == "mode":
+            df[col].fillna(df[col].mode()[0], inplace=True)
+        elif strategy == "knn":
+            imputer = KNNImputer(n_neighbors=knn_neighbors)
+            df[col] = imputer.fit_transform(df[[col]])
+    
+    return df
+```
+```
+# Visualize missing data
+visualize_missing_data(df)
+
+# Handle missing values with mean imputation
+df_cleaned = handle_missing_values(df, strategy="mean")
+
+# Handle missing values using KNN
+df_cleaned_knn = handle_missing_values(df, strategy="knn", knn_neighbors=3)
+```
+
+3. Removing Duplicates: Identifying and removing duplicate rows to ensure data integrity.
+4. Outlier Detection and Handling: Identifying outliers using statistical methods like the Interquartile Range (IQR) and addressing them appropriately.
+5. Datatype Validation and Optimization: Ensuring the data types are correct and optimizing them for efficiency (as demonstrated in the optimize_memory function).
+6. Categorical Encoding: Converting categorical data into numerical formats for easier analysis and modeling.
+
+In this step, we will demonstrate how to handle missing values, duplicates, and outliers, along with optimizing and validating data types.
