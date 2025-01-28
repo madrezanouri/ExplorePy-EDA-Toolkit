@@ -414,9 +414,121 @@ df_cleaned_knn = handle_missing_values(df, strategy="knn", knn_neighbors=3)
 **Fig2: Data sample with missing values**
 
 
-3. Removing Duplicates: Identifying and removing duplicate rows to ensure data integrity.
-4. Outlier Detection and Handling: Identifying outliers using statistical methods like the Interquartile Range (IQR) and addressing them appropriately.
-5. Datatype Validation and Optimization: Ensuring the data types are correct and optimizing them for efficiency (as demonstrated in the optimize_memory function).
-6. Categorical Encoding: Converting categorical data into numerical formats for easier analysis and modeling.
 
-In this step, we will demonstrate how to handle missing values, duplicates, and outliers, along with optimizing and validating data types.
+**3. Removing Duplicates:**
+Identifying and removing duplicate rows to ensure data integrity.
+
+```
+def remove_duplicates(df, subset=None):
+    """
+    Remove duplicate rows from the dataset.
+    
+    Args:
+        df (pd.DataFrame): Dataset.
+        subset (list): Columns to check for duplicates. If None, checks all columns.
+        
+    Returns:
+        pd.DataFrame: Dataset without duplicates.
+    """
+    return df.drop_duplicates(subset=subset)
+```
+```
+df_no_duplicates = remove_duplicates(df)
+```
+
+**4. Outlier Detection and Handling:** 
+Identifying outliers using statistical methods like the Interquartile Range (IQR) and addressing them appropriately.
+
+```
+def detect_outliers_iqr(df, column):
+    """
+    Detect outliers using the IQR method.
+    
+    Args:
+        df (pd.DataFrame): Dataset.
+        column (str): Column to check for outliers.
+        
+    Returns:
+        pd.DataFrame: Boolean mask where True indicates an outlier.
+    """
+    Q1 = df[column].quantile(0.25)
+    Q3 = df[column].quantile(0.75)
+    IQR = Q3 - Q1
+    lower_bound = Q1 - 1.5 * IQR
+    upper_bound = Q3 + 1.5 * IQR
+    return (df[column] < lower_bound) | (df[column] > upper_bound)
+
+def remove_outliers(df, column):
+    """
+    Remove outliers using the IQR method.
+    
+    Args:
+        df (pd.DataFrame): Dataset.
+        column (str): Column to check for outliers.
+        
+    Returns:
+        pd.DataFrame: Dataset without outliers.
+    """
+    outliers = detect_outliers_iqr(df, column)
+    return df[~outliers]
+```
+```
+outliers_mask = detect_outliers_iqr(df, 'salary')
+df_no_outliers = remove_outliers(df, 'salary')
+```
+
+**5. Datatype Validation and Optimization:**
+Ensuring the data types are correct and optimizing them for efficiency (as demonstrated in the optimize_memory function).
+
+```
+def convert_dtypes(df):
+    """
+    Convert data types to optimize memory and ensure integrity.
+    
+    Args:
+        df (pd.DataFrame): Dataset.
+        
+    Returns:
+        pd.DataFrame: Dataset with optimized data types.
+    """
+    for col in df.select_dtypes(include=['object']).columns:
+        try:
+            df[col] = pd.to_datetime(df[col])
+        except:
+            pass
+    for col in df.select_dtypes(include=['int', 'float']).columns:
+        df[col] = pd.to_numeric(df[col], downcast='float')
+    return df
+```
+```
+df_cleaned = convert_dtypes(df)
+```
+
+**6. Categorical Encoding:**
+Converting categorical data into numerical formats for easier analysis and modeling.
+
+```
+def encode_categorical(df, columns, encoding_type="one_hot"):
+    """
+    Encode categorical columns.
+    
+    Args:
+        df (pd.DataFrame): Dataset.
+        columns (list): List of categorical columns to encode.
+        encoding_type (str): Encoding type ('one_hot' or 'label').
+        
+    Returns:
+        pd.DataFrame: Dataset with encoded columns.
+    """
+    if encoding_type == "one_hot":
+        return pd.get_dummies(df, columns=columns, drop_first=True)
+    elif encoding_type == "label":
+        from sklearn.preprocessing import LabelEncoder
+        le = LabelEncoder()
+        for col in columns:
+            df[col] = le.fit_transform(df[col])
+    return df
+```
+```
+df_encoded = encode_categorical(df, columns=['gender', 'department'], encoding_type='one_hot')
+```
