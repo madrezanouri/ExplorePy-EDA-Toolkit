@@ -277,4 +277,28 @@ Min        | NaN  | 25.000000 | NaN         |55000.000000
 Max        |  NaN | 45.000000 | NaN         |  80000.000000
 
 
+**7. Memory Optimization Function:**
+
+1. Optimize Numerical Columns: Converts numerical columns (integers and floats) to more memory-efficient types, such as unsigned integers or smaller floating-point formats.
+
+2.Improve Dataset Performance: Reduces the amount of memory required to store the dataset in RAM, making it easier to work with large datasets.
+
+```
+def optimize_memory(df):
+    """
+    Reduce memory usage by optimizing data types.
+    
+    Args:
+        df (pd.DataFrame): Dataset.
+        
+    Returns:
+        pd.DataFrame: Optimized dataset.
+    """
+    for col in df.select_dtypes(include=['int', 'float']).columns:
+        df[col] = pd.to_numeric(df[col], downcast='unsigned')
+    return df
+```
+```
+df_optimized = optimize_memory(df_csv)
+```
 
